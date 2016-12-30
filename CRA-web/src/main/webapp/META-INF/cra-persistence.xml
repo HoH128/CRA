@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence xmlns="http://java.sun.com/xml/ns/persistence"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="1.0"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_1_0.xsd">
+	<persistence-unit name="craUnit" transaction-type="RESOURCE_LOCAL">
+		<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+		<class>cra.model.User</class>
+		<properties>
+
+			<!-- use of concreate database (Prod environement) -->
+			<property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect" />
+			<property name="hibernate.hbm2ddl.auto" value="update" />
+			<property name="hibernate.show_sql" value="false" />
+			<property name="hibernate.format_sql" value="false" />
+			<property name="hibernate.generate_statistics" value="false" />
+			<property name="hibernate.max_fetch_depth" value="3" />
+			<property name="hibernate.default_batch_fetch_size" value="8" />
+			<property name="hibernate.order_updates" value="false" />
+			<property name="hibernate.jdbc.fetch_size" value="0" />
+			<property name="hibernate.jdbc.batch_size" value="0" />
+			<property name="hibernate.connection.release_mode" value="auto" />
+			<property name="hibernate.cglib.use_reflection_optimizer"
+				value="true" />
+			<property name="hibernate.connection.autocommit" value="true" />
+			<!-- tell hibernate to use C3P0 -->
+
+			<property name="connection.provider_class"
+				value="org.hibernate.connection.C3P0ConnectionProvider" />
+
+			<property name="hibernate.c3p0.min_size" value="5" />
+			<property name="hibernate.c3p0.max_size" value="20" />
+			<property name="hibernate.c3p0.timeout" value="300" />
+			<property name="hibernate.c3p0.max_statements" value="50" />
+			<property name="hibernate.c3p0.idle_test_period" value="3000" />
+
+			<!-- If this is a number greater than 0, C3P0 will test all idle, -->
+			<!-- pooled but unchecked-out connections, every this number of seconds -->
+			<!-- Set this to something below your MySQL wait_timeout -->
+			<property name="c3p0.idle_test_period" value="14400" />
+
+			<!-- // a query used to test connections -->
+			<property name="c3p0.preferredTestQuery" value="select 1" />
+
+			<!-- cache configuration -->
+
+		</properties>
+	</persistence-unit>
+</persistence>
