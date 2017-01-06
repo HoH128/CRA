@@ -15,7 +15,9 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "user")
 @NamedQueries({
-@NamedQuery(name = "get.all.users", query = "SELECT u FROM User u") })
+@NamedQuery(name = "get.all.users", query = "SELECT u FROM User u"),
+@NamedQuery(name = "login.control", query = "SELECT u FROM User u where u.login = :login and u.password = :password"),
+@NamedQuery(name = "get.user.bylogin", query = "SELECT u FROM User u where u.login = :login") })
 public class User implements Serializable{
 
 	private static final long serialVersionUID = 1L;
@@ -29,6 +31,9 @@ public class User implements Serializable{
 	
 	@Column
 	private String prenom;
+	
+	@Column
+	private String email;
 	
 	@Column
 	private String login;
@@ -50,6 +55,14 @@ public class User implements Serializable{
 	
 	public void setPrenom(String prenom) {
 		this.prenom = prenom;
+	}
+	
+	public String getEmail() {
+		return email;
+	}
+	
+	public void setEmail(String email) {
+		this.email = email;
 	}
 	
 	public String getLogin() {

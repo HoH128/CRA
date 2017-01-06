@@ -41,16 +41,14 @@ public class AuthentificationBean {
 	
 	
 	public String doLogin(){
-		if(user.getLogin().equals("sara")
-				&& user.getPassword().equals("123"))
+		if(userService.getDBUser(user.getLogin(), user.getPassword()))
 			return "/hello.xhtml";
 		else
+			
 			return "/index.xhtml";
 	}
-	
-	
-	// Exemple d'appel d'une focntion du core 
-	public List<User> getAllUser(){
+	 
+	public List<User> getAllUsers(){
 		return userService.findAllUsers();
 	}
 }

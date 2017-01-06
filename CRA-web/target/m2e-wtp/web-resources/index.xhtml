@@ -15,12 +15,12 @@
 		<p:growl id="growl" showDetail="false" />
 
 		<p:panel
-			style="margin-top: 150px;
-	transform: translateY(-50%);
-	margin-left: auto;
-	margin-right: auto;
-	width: 360px;
-	padding: 30px 20px 25px;">
+			style="margin-top: 300px;
+			transform: translateY(-50%);
+			margin-left: auto;
+			margin-right: auto;
+			width: 360px;
+			padding: 30px 20px 25px;">
 			<div class="ui-fluid">
 				<p:panelGrid id="panel" columns="1" cellpadding="3" layout="grid"
 					style="border: none !important;">
@@ -33,7 +33,7 @@
 					<p:password id="password"
 						value="#{authentificationBean.user.password}" required="true"
 						placeholder="Mot de passe "
-						requiredMessage="le champ mot est obligatoire " />
+						requiredMessage="le champ mot de passe est obligatoire " />
 
 					<p:commandButton value="Connexion" styleclass="login-btn"
 						update="panel growl" action="#{authentificationBean.doLogin()}" />

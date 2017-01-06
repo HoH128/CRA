@@ -22,17 +22,30 @@ public class UserDaoImpl implements UserDao  {
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<User> findAllUsers() {
-
 		List<User> list = new ArrayList<>();
 		try {
-			list = (List<User>) ((EntityManager) em).createQuery(
-					"SELECT t from User t").getResultList();
+			list = (List<User>) em.createNamedQuery("get.all.users", User.class).getResultList();
 		} catch (Exception e) {
 			System.out.println("Error ");
 		}
-
-
 		return list;
+	}
 
+	@Override
+	public boolean getDBUser(String login, String password) { 
+		try {
+		User user = em.createNamedQuery("login.control", User.class).setParameter("login", login).setParameter("password", password).getSingleResult();
+		if(user!=null){
+			return true;
+		}
+		} catch (Exception e) {
+			System.out.println("User not found!");
+		}
+		return false;
+	}
+
+	@Override
+	public void addUser(User user) {
+		
 	}
 }

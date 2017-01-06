@@ -21,8 +21,10 @@ public class UserServiceImpl  implements UserService {
 	public List<User> findAllUsers() {
 		return userDao.findAllUsers();
 	}
-	
-	
-	
+
+	@Override
+	public boolean getDBUser(String login, String password) {
+		return userDao.getDBUser(login,password);
+	}
 	
 }
