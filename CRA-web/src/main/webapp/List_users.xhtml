@@ -14,28 +14,21 @@
 
 		<!-- <p:growl id="growl" showDetail="false" /> -->
 
-		<h:dataTable value="#{authentificationBean.getAllUsers()}" var="u" border="1">
-		<h:column>
-			<f:facet name="header">
-			Nom
-			</f:facet>
-			#{u.nom}
+		<h:dataTable value="#{authentificationBean.getAllUsers()}" var="u">
+		<h:column headerText="Nom">
+			<h:outputText value="#{u.nom}" />
 		</h:column>
 		 
-		<h:column>
-			<f:facet name="header">
-			Prenom
-			</f:facet>
-			#{u.prenom}
+		<h:column headerText="Prenom">
+			<h:outputText value="#{u.prenom}" />
 		</h:column>
 		
-		<h:column>
-			<f:facet name="header">
-			Email
-			</f:facet>
-			#{u.email}
+		<h:column headerText="Email">
+			<h:outputText value="#{u.email}" />
 		</h:column>
 		</h:dataTable>
+		
+		<p:commandButton value="AddUser" styleclass="ui-priority-primary" action="#{authentificationBean.formAdd()}" />
 	</h:form>
 </h:body>
 </html>

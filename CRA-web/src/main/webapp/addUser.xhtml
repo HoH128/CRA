@@ -1,0 +1,51 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
+<h:head>
+	<title>cra</title>
+
+</h:head>
+
+<h:body>
+	<h1>Ajouter un utilisateur</h1>
+	<h:form>
+		<table>
+			<tr>
+				<td><label>Nom</label></td>
+				<td><h:inputText id="nom" value="#{authentificationBean.user.nom}"></h:inputText>
+				</td>
+			</tr>
+			<tr>
+				<td><label>Prenom</label></td>
+				<td><h:inputText id="prenom" value="#{authentificationBean.user.prenom}"></h:inputText>
+				</td>
+			</tr>
+			<tr>
+				<td><label>Email</label></td>
+				<td><h:inputText id="email" value="#{authentificationBean.user.email}"></h:inputText>
+				</td>
+			</tr>
+			<tr>
+				<td><label>Login</label></td>
+				<td><h:inputText id="login" value="#{authentificationBean.user.login}"></h:inputText>
+				</td>
+			</tr>
+			<tr>
+				<td><label>Mot de passe</label></td>
+				<td><h:inputText id="pwd" value="#{authentificationBean.user.password}"></h:inputText>
+				</td>
+			</tr>
+			<tr>
+				<td><h:commandButton action="#{authentificationBean.addUser()}" value="Valider"></h:commandButton>
+				</td>
+				<td><h:commandButton action="#{authentificationBean.resetAdd()}" value="Annuler"></h:commandButton></td>
+			</tr>
+
+		</table>
+
+	</h:form>
+</h:body>
+</html>

@@ -26,5 +26,15 @@ public class UserServiceImpl  implements UserService {
 	public boolean getDBUser(String login, String password) {
 		return userDao.getDBUser(login,password);
 	}
+
+	@Override
+	public boolean addUser(User user) {
+		return userDao.addUser(user);
+	}
+
+	@Override
+	public void addUser(String login, String nom, String password, String prenom, String email) {
+		userDao.addUser(login, nom, password, prenom, email);
+	}
 	
 }

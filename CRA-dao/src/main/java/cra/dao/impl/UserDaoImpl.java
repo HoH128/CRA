@@ -4,7 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.EntityManager;
+import javax.persistence.NamedQuery;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 import org.springframework.stereotype.Repository;
 
@@ -45,7 +47,33 @@ public class UserDaoImpl implements UserDao  {
 	}
 
 	@Override
-	public void addUser(User user) {
-		
+	public boolean addUser(User user) {
+		try {
+		em.persist(user);
+		em.getTransaction().commit();
+		em.close();
+		return true;
+		} catch (Exception e) {
+			System.out.println("error add user");
+			return false;
+		}
 	}
+
+	@Override
+    public void addUser(String login, String nom, String password, String prenom, String email) {
+		try {
+		User user = new User();
+		user.setLogin(login);
+		user.setNom(nom);
+		user.setPassword(password);
+		user.setPrenom(prenom);
+		user.setEmail(email);
+		em.persist(user);
+		em.getTransaction().commit();
+		//em.close();
+		} catch (Exception e) {
+			System.out.println("");
+		}
+	}
+	
 }

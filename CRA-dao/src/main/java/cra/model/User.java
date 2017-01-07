@@ -17,7 +17,7 @@ import javax.persistence.Table;
 @NamedQueries({
 @NamedQuery(name = "get.all.users", query = "SELECT u FROM User u"),
 @NamedQuery(name = "login.control", query = "SELECT u FROM User u where u.login = :login and u.password = :password"),
-@NamedQuery(name = "get.user.bylogin", query = "SELECT u FROM User u where u.login = :login") })
+@NamedQuery(name = "get.user.bylogin", query = "SELECT u FROM User u where u.login = :login")})
 public class User implements Serializable{
 
 	private static final long serialVersionUID = 1L;
@@ -80,11 +80,13 @@ public class User implements Serializable{
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	
+
 	@Override
 	public String toString() {
-		return "User [nom=" + nom + ", prenom=" + prenom + ", login=" + login
-				+ ", password=" + password + "]";
+		return "User [id=" + id + ", nom=" + nom + ", prenom=" + prenom
+				+ ", email=" + email + ", login=" + login + ", password="
+				+ password + "]";
 	}
+	
 
 }

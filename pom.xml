@@ -68,8 +68,6 @@
 		</plugins>
 	</build>
 	<modules>
-		<module>CRA-domaine</module>
-		<module>CRA-service</module>
 		<module>CRA-dao</module>
 		<module>CRA-web</module>
 		<module>CRA-api</module>
