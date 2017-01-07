@@ -4,15 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.EntityManager;
-import javax.persistence.NamedQuery;
 import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
 
 import org.springframework.stereotype.Repository;
 
 import cra.dao.ProjetDao;
 import cra.model.Projet;
-import cra.model.User;
 
 
 @Repository

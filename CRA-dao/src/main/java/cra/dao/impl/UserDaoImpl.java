@@ -61,18 +61,18 @@ public class UserDaoImpl implements UserDao  {
 
 	@Override
     public void addUser(String login, String nom, String password, String prenom, String email) {
-		try {
 		User user = new User();
 		user.setLogin(login);
 		user.setNom(nom);
 		user.setPassword(password);
 		user.setPrenom(prenom);
 		user.setEmail(email);
+		try {
 		em.persist(user);
 		em.getTransaction().commit();
-		//em.close();
+		em.close();
 		} catch (Exception e) {
-			System.out.println("");
+			System.out.println("error!");
 		}
 	}
 	

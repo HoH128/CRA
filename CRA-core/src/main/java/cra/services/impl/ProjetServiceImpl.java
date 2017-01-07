@@ -26,8 +26,6 @@ public class ProjetServiceImpl  implements ProjetService {
 	public void addProject(String nomProjet, String entite, String responsable, String description) {
 		projetDao.addProject(nomProjet, entite, responsable, description);
 	}
-
-	
 	
 	
 }
