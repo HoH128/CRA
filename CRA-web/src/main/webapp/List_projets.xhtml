@@ -1,0 +1,45 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
+<h:head>
+	<title>Liste des utilisateurs</title>
+
+</h:head>
+
+<h:body>
+		<p:megaMenu orientation="#{megaMenuView.orientation}" style="margin-top:50px">
+    	<p:submenu label="Consultation CRA"></p:submenu>
+    	<p:submenu label="Gestion de projets">
+    		<p:submenu label="Ajouter un projet" url="#"/>
+    		<p:submenu label="Lister les projets" url="#"/>
+    	</p:submenu>
+    	<p:submenu label="Gestion de campagnes">
+    		<p:submenu label="Ajouter une campagne" url="#"/>
+    		<p:submenu label="Lister les campagnes" url="#"/>
+    	</p:submenu>
+    	<p:submenu label="Gestion des utilisateurs">
+    		<p:submenu label="Ajouter un utilisateur" url="#"/>
+    		<p:submenu label="Lister les utilisateurs" url="#"/>
+    	</p:submenu>
+    	</p:megaMenu>
+		<h:dataTable value="#{authentificationBean.getAllUsers()}" var="u">
+		<h:column headerText="Nom">
+			<h:outputText value="#{u.nom}" />
+		</h:column>
+		 
+		<h:column headerText="Prenom">
+			<h:outputText value="#{u.prenom}" />
+		</h:column>
+		
+		<h:column headerText="Email">
+			<h:outputText value="#{u.email}" />
+		</h:column>
+		</h:dataTable>
+		
+		<p:commandButton value="AddUser" styleclass="ui-priority-primary" action="#{authentificationBean.formAdd()}" />
+
+</h:body>
+</html>

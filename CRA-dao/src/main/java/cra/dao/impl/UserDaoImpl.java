@@ -47,32 +47,19 @@ public class UserDaoImpl implements UserDao  {
 	}
 
 	@Override
-	public boolean addUser(User user) {
-		try {
-		em.persist(user);
-		em.getTransaction().commit();
-		em.close();
-		return true;
-		} catch (Exception e) {
-			System.out.println("error add user");
-			return false;
-		}
-	}
-
-	@Override
     public void addUser(String login, String nom, String password, String prenom, String email) {
-		User user = new User();
-		user.setLogin(login);
-		user.setNom(nom);
-		user.setPassword(password);
-		user.setPrenom(prenom);
-		user.setEmail(email);
 		try {
-		em.persist(user);
-		em.getTransaction().commit();
-		em.close();
+			User user = new User();
+			user.setLogin(login);
+			user.setNom(nom);
+			user.setPassword(password);
+			user.setPrenom(prenom);
+			user.setEmail(email);
+			em.persist(user);
+			em.getTransaction().commit();
+			//em.close();
 		} catch (Exception e) {
-			System.out.println("error!");
+			
 		}
 	}
 	

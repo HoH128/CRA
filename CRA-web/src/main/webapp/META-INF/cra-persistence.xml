@@ -5,6 +5,7 @@
 	<persistence-unit name="craUnit" transaction-type="RESOURCE_LOCAL">
 		<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
 		<class>cra.model.User</class>
+		<class>cra.model.Projet</class>
 		<properties>
 
 			<!-- use of concreate database (Prod environement) -->

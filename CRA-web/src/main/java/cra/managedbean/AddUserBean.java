@@ -15,7 +15,7 @@ import cra.services.UserService;
 @Component
 @ManagedBean
 @Scope("request")
-public class AuthentificationBean {
+public class AddUserBean {
 
 	User user;
 	
@@ -35,12 +35,13 @@ public class AuthentificationBean {
 		user = new User();
 	}
 	
-	public String doLogin(){
-		if(userService.getDBUser(user.getLogin(), user.getPassword()))
-			return "/List_users.xhtml";
-		else	
-			return "/index.xhtml";
+	public String addUser(){
+		userService.addUser(user.getLogin(), user.getNom(), user.getPassword(), user.getPrenom(), user.getEmail());
+		return "/List_users.xhtml";
 	}
-	 
+	
+	public String resetAdd(){
+		return "/addUser.xhtml";
+	}
 }
 

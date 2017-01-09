@@ -15,38 +15,38 @@
 		<table>
 			<tr>
 				<td><label>Nom</label></td>
-				<td><p:inputText id="nom" placeholder="Nom" value="#{AddUsersBean.user.nom}" required="true"
+				<td><p:inputText id="nom" placeholder="Nom" value="#{authentificationBean.user.nom}" required="true"
 						requiredMessage="le nom est obligatoire"></p:inputText>
 				</td>
 			</tr>
 			<tr>
 				<td><label>Prenom</label></td>
-				<td><p:inputText id="prenom" placeholder="Prenom" value="#{AddUsersBean.user.prenom}" required="true"
+				<td><p:inputText id="prenom" placeholder="Prenom" value="#{authentificationBean.user.prenom}" required="true"
 						requiredMessage="le prenom est obligatoire"></p:inputText>
 				</td>
 			</tr>
 			<tr>
 				<td><label>Email</label></td>
-				<td><p:inputText id="email" placeholder="xyz@gmail.com" value="#{AddUsersBean.user.email}" required="true"
+				<td><p:inputText id="email" placeholder="xyz@gmail.com" value="#{authentificationBean.user.email}" required="true"
 						requiredMessage="l'email est obligatoire"></p:inputText>
 				</td>
 			</tr>
 			<tr>
 				<td><label>Login</label></td>
-				<td><p:inputText id="login" placeholder="Nom d'utilisateur" value="#{AddUsersBean.user.login}" required="true"
+				<td><p:inputText id="login" placeholder="Nom d'utilisateur" value="#{authentificationBean.user.login}" required="true"
 						requiredMessage="le nom d'utilisateur est obligatoire"></p:inputText>
 				</td>
 			</tr>
 			<tr>
 				<td><label>Mot de passe</label></td>
-				<td><p:password id="pwd" placeholder="Mot de passe" value="#{AddUsersBean.user.password}" required="true"
+				<td><p:password id="pwd" placeholder="Mot de passe" value="#{authentificationBean.user.password}" required="true"
 						requiredMessage="le mot de passe est obligatoire"></p:password>
 				</td>
 			</tr>
 			<tr>
-				<td><p:commandButton action="#{AddUsersBean.addUser()}" value="Valider"></p:commandButton>
+				<td><p:commandButton action="#{authentificationBean.addUser()}" value="Valider"></p:commandButton>
 				</td>
-				<td><p:commandButton action="#{AddUsersBean.resetAdd()}" value="Annuler"></p:commandButton></td>
+				<td><p:commandButton action="#{authentificationBean.resetAdd()}" value="Annuler"></p:commandButton></td>
 			</tr>
 
 		</table>

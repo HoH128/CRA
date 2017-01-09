@@ -1,5 +1,6 @@
 package cra.managedbean;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -15,9 +16,10 @@ import cra.services.UserService;
 @Component
 @ManagedBean
 @Scope("request")
-public class AuthentificationBean {
+public class ListUsersBean {
 
-	User user;
+	User user;	
+	List<User> users = new ArrayList<>();
 	
 	@Autowired
 	UserService userService;	
@@ -30,17 +32,28 @@ public class AuthentificationBean {
 		this.user = user;
 	}
 
-	@PostConstruct
-	private void init() {
-		user = new User();
+	public List<User> getUsers() {
+		return users;
 	}
-	
-	public String doLogin(){
-		if(userService.getDBUser(user.getLogin(), user.getPassword()))
-			return "/List_users.xhtml";
-		else	
-			return "/index.xhtml";
+
+	public void setUsers(List<User> users) {
+		this.users = users;
+	}
+
+	@PostConstruct
+	public void init() {
+		user = new User();
+		users = getAllUsers();
 	}
 	 
+	public List<User> getAllUsers(){
+		return userService.findAllUsers();
+	}
+	
+	public void addUser(){
+		userService.addUser(user.getLogin(), user.getNom(), user.getPassword(), user.getPrenom(), user.getEmail());
+		users = getAllUsers();
+	}
+	
 }
 
