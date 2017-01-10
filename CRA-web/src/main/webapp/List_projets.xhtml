@@ -1,0 +1,99 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:po="http://primefaces.org/omega">
+<h:head>
+	<title>Gestion des projets</title>
+
+</h:head>
+
+<h:body>
+		<!-- <p:megaMenu orientation="#{megaMenuView.orientation}" style="margin-top:50px">
+    	<p:submenu label="Consultation CRA"></p:submenu>
+    	
+    	<p:submenu label="Gestion de projets">
+    		<p:menuitem label="Ajouter un projet" url="#"/>
+    		<p:menuitem label="Lister les projets" url="#"/>
+    	</p:submenu>
+    	<p:submenu label="Gestion de campagnes">
+    		<p:menuitem label="Ajouter une campagne" url="#"/>
+    		<p:menuitem label="Lister les campagnes" url="#"/>
+    	</p:submenu>
+    	<p:submenu label="Gestion des utilisateurs">
+    		<p:menuitem label="Ajouter un utilisateur" url="#"/>
+    		<p:menuitem label="Lister les utilisateurs" url="#"/>
+    	</p:submenu>
+    	</p:megaMenu> -->
+    	<h:form id="projets">
+		<p:dataTable id="listProjets" value="#{listProjectsBean.projets}" var="pr">
+		<p:column headerText="Nom du projet">
+			<h:outputText value="#{pr.nomProjet}" />
+		</p:column>
+		 
+		<p:column headerText="Entité">
+			<h:outputText value="#{pr.entite}" />
+		</p:column>
+		
+		<p:column headerText="Responsable">
+			<h:outputText value="#{pr.responsable}" />
+		</p:column>
+		
+		<p:column headerText="Description">
+			<h:outputText value="#{pr.description}" />
+		</p:column>
+		</p:dataTable>
+	
+		<p:commandButton value="AddUser" styleclass="ui-priority-primary"
+		onclick="PF('dialogAddProjet').show()"/>
+		
+		</h:form>
+		
+		<p:dialog
+		widgetVar="dialogAddProjet"
+		closable="true"
+		header="Ajouter projet">
+		<p:ajax event="close" listener="#{listProjectsBean.projets}" update=":projets:listProjets"/>
+		<h:form id='FormAddProjet'>
+		<table>
+			<tr>
+				<td><label>Nom du projet</label></td>
+				<td><p:inputText id="nomP" placeholder="Nom du projet" value="#{listProjetsBean.projet.nomProjet}" required="true"
+						requiredMessage="le nom est obligatoire"></p:inputText>
+				</td>
+			</tr>
+			<tr>
+				<td><label>Entité</label></td>
+				<td><p:inputText id="entiteP" placeholder="Entité" value="#{listProjetsBean.projet.entite}" required="true"
+						requiredMessage="le prenom est obligatoire"></p:inputText>
+				</td>
+			</tr>
+			<tr>
+				<td><label>Responsable</label></td>
+				<td><p:inputText id="responsableP" placeholder="xyz@gmail.com" value="#{listProjetsBean.projet.responsable}" required="true"
+						requiredMessage="l'email est obligatoire"></p:inputText>
+				</td>
+			</tr>
+			<tr>
+				<td><label>Description</label></td>
+				<td><p:inputText id="descP" placeholder="Nom d'utilisateur" value="#{listProjetsBean.projet.description}" required="true"
+						requiredMessage="le nom d'utilisateur est obligatoire"></p:inputText>
+				</td>
+			</tr>
+			<tr>
+				<td><p:commandButton action="#{listProjetsBean.addProjet()}" value="Valider" oncomplete="PF('dialogAddProjet').hide()" >
+				</p:commandButton>
+				</td>
+				<td><p:commandButton onclick="PF('dialogAddProjet').hide()" value="Annuler"></p:commandButton></td>
+			</tr>
+
+		</table>
+		
+		</h:form>
+		</p:dialog>
+		
+		
+</h:body>
+</html>
