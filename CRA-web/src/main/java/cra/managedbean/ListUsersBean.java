@@ -52,8 +52,10 @@ public class ListUsersBean {
 	
 	public void addUser(){
 		userService.addUser(user.getLogin(), user.getNom(), user.getPassword(), user.getPrenom(), user.getEmail());
-		init();
+		users = getAllUsers();
+		
 	}
+	
 	
 }
 

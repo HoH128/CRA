@@ -41,6 +41,12 @@ public class AuthentificationBean {
 		else	
 			return "/index.xhtml";
 	}
+	public String getDefaultTheme(){
+		
+		
+		return "/default.xhtml";
+		
+	}
 	 
 }
 
