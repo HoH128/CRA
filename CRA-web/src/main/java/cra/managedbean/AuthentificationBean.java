@@ -17,7 +17,7 @@ import cra.services.UserService;
 @Scope("request")
 public class AuthentificationBean {
 
-	User user;
+	static User user;
 	
 	@Autowired
 	UserService userService;	
@@ -40,12 +40,6 @@ public class AuthentificationBean {
 			return "/List_users.xhtml";
 		else	
 			return "/index.xhtml";
-	}
-	public String getDefaultTheme(){
-		
-		
-		return "/default.xhtml";
-		
 	}
 	 
 }

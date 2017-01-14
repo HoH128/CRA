@@ -44,6 +44,7 @@ public class ListUsersBean {
 	public void init() {
 		user = new User();
 		users = getAllUsers();
+		user.setNom(AuthentificationBean.user.getNom());
 	}
 	 
 	public List<User> getAllUsers(){
@@ -55,7 +56,8 @@ public class ListUsersBean {
 		users = getAllUsers();
 		
 	}
-	
-	
+	public void getUsersName(){
+		user.setNom(AuthentificationBean.user.getNom());
+	}
 }
 

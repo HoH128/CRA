@@ -72,6 +72,5 @@
 		<module>CRA-web</module>
 		<module>CRA-api</module>
 		<module>CRA-core</module>
-		<module>CRA-commun</module>
 	</modules>
 </project>

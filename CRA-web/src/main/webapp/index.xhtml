@@ -39,7 +39,7 @@
 						<p:tooltip for="pass" styleClass="tooltip" showEvent="focus" hideEvent="blur" />
 					</h:panelGroup>
 					
-					<p:commandButton id="submitButton" action="#{authentificationBean.getDefaultTheme()}" update="logPanelGrid,messages" icon="ui-icon-check" value="Connexion" 
+					<p:commandButton id="submitButton" action="#{authentificationBean.doLogin()}" update="logPanelGrid,messages" icon="ui-icon-check" value="Connexion" 
 					style="margin: 20px -110px 30px"/>
 					
 				</h:panelGrid>

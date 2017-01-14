@@ -39,7 +39,7 @@ public class ListProjectsBean {
 	@PostConstruct
 	public void init() {
 		projet = new Projet();
-		projets = getProjets();
+		projets = getAllProjets();
 	}
 	 
 	public List<Projet> getProjets(){
@@ -52,7 +52,7 @@ public class ListProjectsBean {
 	
 	public void addProjet(){
 		projetService.addProject(projet.getNomProjet(), projet.getEntite(), projet.getResponsable(), projet.getDescription());
-		projets = getProjets();
+		projets = getAllProjets();
 	}
 	
 }
