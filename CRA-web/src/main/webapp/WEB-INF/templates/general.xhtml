@@ -13,8 +13,8 @@
 	<h:head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 		<title><ui:insert name="title" /></title>
-		<link rel="stylesheet" type="text/css" href="${request.contextPath}/resources/css/style.css" />
-		<link rel="shortcut icon" href="${request.contextPath}/resources/css/images/favicon.ico" />
+		<link rel="stylesheet" type="text/css" href="css/style.css" />
+		<link rel="shortcut icon" href="css/images/favicon.ico" />
 	</h:head>
 	
 	<h:body>
@@ -27,7 +27,7 @@
 		<div id="container">
 			<div id="greeting">
 				<c:if test="${not empty currentUser.name}">
-					<b>Welcome,</b> ${user.firstName} ${user.lastName} | <a href="${request.contextPath}/app/logout"><img alt="" title="Logout" src="${request.contextPath}/resources/css/images/logout.png" /></a>
+					<b>Welcome,</b> ${user.prenom} ${user.nom} | <a href="${request.contextPath}/app/logout"><img alt="" title="Logout" src="${request.contextPath}/resources/css/images/logout.png" /></a>
 				</c:if>
 			</div>
 			<div id="header">

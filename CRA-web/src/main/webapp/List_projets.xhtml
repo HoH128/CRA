@@ -55,7 +55,7 @@
 		widgetVar="dialogAddProjet"
 		closable="true"
 		header="Ajouter projet">
-		<p:ajax event="close" listener="#{listProjectsBean.projets}" update=":projets:listProjets"/>
+		<p:event event="close" update=":projets:listProjets"/>
 		<h:form id='FormAddProjet'>
 		<table>
 			<tr>
@@ -83,7 +83,7 @@
 				</td>
 			</tr>
 			<tr>
-				<td><p:commandButton action="#{listProjetsBean.addProjet()}" value="Valider" oncomplete="PF('dialogAddProjet').hide()" >
+				<td><p:commandButton action="#{listProjetsBean.addProjet()}" value="Valider" oncomplete="PF('dialogAddProjet').close()" >
 				</p:commandButton>
 				</td>
 				<td><p:commandButton onclick="PF('dialogAddProjet').hide()" value="Annuler"></p:commandButton></td>
