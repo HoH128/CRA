@@ -6,11 +6,11 @@
 	xmlns:c="http://java.sun.com/jsp/jstl/core">
 <h:head>
 	<title>Gestion des projets</title>
-
+	<header><img src="assets/images/logo-ASF.png" /></header>
 </h:head>
 
-<h:body>
-		<p:megaMenu orientation="#{megaMenuView.orientation}" style="margin-top:50px">
+<h:body style="background-color:#F0F8FF;">
+		<p:megaMenu orientation="#{megaMenuView.orientation}" style="margin-top:60px; margin-right:20px; margin-left:20px;">
     	<p:submenu label="Consultation CRA"></p:submenu>
     	
     	<p:submenu label="Gestion de projets">
@@ -37,9 +37,14 @@
     		</p:submenu>
     	</p:column>
     	</p:submenu>
+    	<p:submenu label="Admin" style="margin-left:340px;">
+    	<p:column>
+    		<p:commandLink >Déconnexion</p:commandLink>
+    	</p:column>
+    	</p:submenu>
     	</p:megaMenu>
     	<h:form id="projets">
-		<p:dataTable id="listProjets" value="#{listProjectsBean.projets}" var="pr">
+		<p:dataTable id="listProjets" value="#{listProjectsBean.projets}" var="pr" style="margin-top:80px; width:800px; margin-left:250px;">
 		<p:column headerText="Nom du projet">
 			<h:outputText value="#{pr.nomProjet}" />
 		</p:column>
@@ -57,7 +62,7 @@
 		</p:column>
 		</p:dataTable>
 	
-		<p:commandButton value="Nouveau projet" styleclass="ui-priority-primary"
+		<p:commandButton value="Nouveau projet" styleclass="ui-priority-primary" style="margin-top:60px; margin-left:270px;"
 		onclick="PF('dialogAddProjet').show()"/>
 		
 		</h:form>
@@ -66,6 +71,7 @@
 		widgetVar="dialogAddProjet"
 		closable="true"
 		header="Ajouter projet">
+		<p:messages id="messages" globalOnly="true" />
 		<h:form id='FormAddProjet'>
 		<table>
 			<tr>
@@ -91,6 +97,9 @@
 				<td><p:inputText id="descP" placeholder="Description" value="#{listProjectsBean.projet.description}" required="true"
 						requiredMessage="Le champ Description est obligatoire" title="Entrez le(s) numéro(s) de semaine(s)"></p:inputText>
 				</td>
+					<h:panelGroup>
+						<p:tooltip for="descP" styleClass="tooltip" showEvent="focus" hideEvent="blur" />
+					</h:panelGroup>
 			</tr>
 			<tr>
 				<td><p:commandButton action="#{listProjectsBean.addProjet()}" value="Valider" oncomplete="PF('dialogAddProjet').hide()" update=":projets:listProjets">

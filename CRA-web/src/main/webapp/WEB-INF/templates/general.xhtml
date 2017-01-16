@@ -20,7 +20,7 @@
 	<h:body>
 		<p:ajaxStatus onstart="statusDialog.show();" onsuccess="statusDialog.hide();" />
 		<p:dialog modal="true" widgetVar="statusDialog" header="Processing..." draggable="true" closable="false">
-			<p:graphicImage value="/css/images/ajaxloadingbar.gif" />
+			<p:graphicImage value="css/images/ajaxloadingbar.gif" />
 		</p:dialog>
 		<p:growl id="growlMessages" showDetail="false" sticky="false" life="13000" />
 	
@@ -37,7 +37,7 @@
 			</div>
 			<div id="line" />
 			<div id="content">
-				<ui:insert name="content" />
+				<ui:insert name="content"/>
 			</div>
 			<div id="footer">
 				<ui:insert name="footer" />

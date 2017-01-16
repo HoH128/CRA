@@ -6,15 +6,16 @@
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:c="http://java.sun.com/jsp/jstl/core"
 	template="WEB-INF/templates/general.xhtml">
+	<h:head>
+		<title>Authentification</title>
+		<link rel="stylesheet" type="text/css" href="assets/css/style.css"/>
+	</h:head>
+	<ui:define name="header"><img src="assets/images/logo-ASF.png" /></ui:define>
 	
-	<ui:define name="title"><h:outputText value="" /></ui:define>
-	<ui:define name="header"><h:outputText value="" /></ui:define>
-	
-	<ui:define name="content">
+	<ui:define name="content" >
 		<h:form id="loginForm">
-			<p:fieldset styleClass="fieldset" legend="Authentification" style="width: 800px; margin: 60px 250px;">
+			<p:fieldset styleclass="fieldset" legend="Authentification" style="width: 800px; margin: 60px 250px;">
 				<p:focus />
-				<p:messages id="messages" globalOnly="true" />
 			
 				<h:panelGrid id="logPanelGrid" style="margin: 0 auto; margin-top: 25px; text-align: right" cellspacing="8" columns="3">
 					<h:panelGroup>
@@ -24,7 +25,6 @@
 					<p:inputText id="userName" value="#{authentificationBean.user.login}" required="true" label="User Name" title="Entrez votre nom d'utilisateur!"
 					requiredMessage="le champ nom d'utilisateur est obligatoire " />
 					<h:panelGroup>
-						<p:message id="userNameMsg" for="userName" />
 						<p:tooltip for="userName" styleClass="tooltip" showEvent="focus" hideEvent="blur" />
 					</h:panelGroup>
 					
@@ -35,11 +35,10 @@
 					<p:password id="pass" value="#{authentificationBean.user.password}" required="true" label="Password" title="Entrez votre mot de passe!" 
 					requiredMessage="le champ mot de passe est obligatoire "/>
 					<h:panelGroup>
-						<p:message id="passMsg" for="pass" />
 						<p:tooltip for="pass" styleClass="tooltip" showEvent="focus" hideEvent="blur" />
 					</h:panelGroup>
 					
-					<p:commandButton id="submitButton" action="#{authentificationBean.doLogin()}" update="logPanelGrid,messages" icon="ui-icon-check" value="Connexion" 
+					<p:commandButton id="submitButton" action="#{authentificationBean.doLogin()}" update="logPanelGrid" icon="ui-icon-check" value="Connexion" 
 					style="margin: 20px -110px 30px"/>
 					
 				</h:panelGrid>

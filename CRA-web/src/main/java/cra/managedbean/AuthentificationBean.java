@@ -37,7 +37,7 @@ public class AuthentificationBean {
 	
 	public String doLogin(){
 		if(userService.getDBUser(user.getLogin(), user.getPassword()))
-			return "/List_users.xhtml";
+			return "/List_users";
 		else	
 			return "/index.xhtml";
 	}
