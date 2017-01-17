@@ -8,24 +8,24 @@
 
 <h:head>
 	<title>Gestion des utilisateurs</title>
-	<header><img src="assets/images/logo-ASF.png" /></header>
 </h:head>
 <h:body style="background-color: rgb(220, 224, 227);">
+		<header><img src="assets/images/logo-ASF.png" /></header>
+        <p:growl id="msgs"/>
+        <h:form>
 		<p:megaMenu orientation="#{megaMenuView.orientation}" style="margin-top:60px; margin-right:20px; margin-left:20px;">
     	<p:submenu label="Consultation CRA"></p:submenu>
     	
     	<p:submenu label="Gestion de projets">
     	<p:column>
-    		<p:submenu>
-    		<p:menuitem value="Ajouter un projet" url="#"/>
-    		<p:menuitem value="Lister les projets" url="/List_projets.xhtml"/>
+    		<p:submenu>	
+    		<p:menuitem value="Lister les projets" action="#{listUsersBean.listProjetsRedirect()}"/>
     		</p:submenu>
     	</p:column>
     	</p:submenu>
     	<p:submenu label="Gestion de campagnes">
     	<p:column>
     		<p:submenu>
-    		<p:menuitem value="Ajouter une campagne" url="#"/>
     		<p:menuitem value="Lister les campagnes" url="#"/>
     		</p:submenu>
     	</p:column>
@@ -33,34 +33,49 @@
     	<p:submenu label="Gestion des utilisateurs">
     	<p:column>
     		<p:submenu>
-    		<p:menuitem value="Ajouter un utilisateur" onclick="PF('dialogAddUser').show()" url="#"/>
     		<p:menuitem value="Lister les utilisateurs" update=":users:listUsers" url="#"/>
     		</p:submenu>
     	</p:column>
     	</p:submenu>
+    	
     	<p:submenu label="Admin" style="margin-left:230px;">
     	<p:column>
     		<p:commandLink >Déconnexion</p:commandLink>
     	</p:column>
     	</p:submenu>
     	</p:megaMenu>
+    	</h:form>
     	 
     	<h:form id="users">
-		<p:dataTable id="listUsers" value="#{listUsersBean.users}" var="u" style="margin-top:80px; width:800px; margin-left:250px;">
+		<p:dataTable id="listUsers" value="#{listUsersBean.users}" var="u"  style="margin-top:80px; width:800px; margin-left:250px;">
 		<p:column headerText="Nom">
 			<h:outputText value="#{u.nom}" />
 		</p:column>
 		 
-		<p:column headerText="Prenom">
+		<p:column headerText="Prénom">
 			<h:outputText value="#{u.prenom}" />
 		</p:column>
 		
-		<p:column headerText="Email">
+		<p:column headerText="Email" style="width: 250px;">
 			<h:outputText value="#{u.email}" />
 		</p:column>
+		
+		<p:column headerText="Action">
+			<p:commandButton id="Update" icon="ui-icon-pencil" value="" style="width : 40px; height: 25px; margin-left:30px; margin-right:20px;"/>
+			<p:commandButton icon="ui-icon-trash" action="#{listUsersBean.deleteUser()}" value="" update=":users:listUsers" style="width : 40px; height: 25px;">
+				<p:confirm header="Confirmation" message="Etes-vous sûr de bien vouloir supprimer ce collaborateur?" icon="ui-icon-alert" />
+				<f:setPropertyActionListener value="#{u.id}" target="#{listUsersBean.idSelecteduser}"></f:setPropertyActionListener>
+			</p:commandButton>
+			
+			<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+        	<p:commandButton value="Oui" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+        	<p:commandButton value="Non" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+    		</p:confirmDialog>
+    
+		</p:column>
 		</p:dataTable>
-	
-		<p:commandButton value="Nouvel utilisateur" styleclass="ui-priority-primary" style="margin-top:60px; margin-left:270px;"
+
+		<p:commandButton icon="ui-icon-plus" value="Nouvel utilisateur" styleclass="ui-priority-primary" style="margin-top:60px; margin-left:270px;"
 		onclick="PF('dialogAddUser').show()"/>
 		
 		</h:form>
@@ -68,49 +83,54 @@
 		<p:dialog
 		widgetVar="dialogAddUser"
 		closable="true"
+		modal="true"
 		header="Ajouter collaborateur">
 		<h:form id='FormAddUser'>
+		
 		<table>
 			<tr>
 				<td><label>Nom</label></td>
 				<td><p:inputText id="nom" placeholder="Nom" value="#{listUsersBean.user.nom}" required="true"
-						requiredMessage="le nom est obligatoire"></p:inputText>
+						requiredMessage="le nom est obligatoire" style="margin-left:30px"></p:inputText>
 				</td>
 			</tr>
 			<tr>
-				<td><label>Prenom</label></td>
-				<td><p:inputText id="prenom" placeholder="Prenom" value="#{listUsersBean.user.prenom}" required="true"
-						requiredMessage="le prenom est obligatoire"></p:inputText>
+				<td><label>Prénom</label></td>
+				<td><p:inputText id="prenom" placeholder="Prénom" value="#{listUsersBean.user.prenom}" required="true"
+						requiredMessage="le prénom est obligatoire" style="margin-left:30px"></p:inputText>
 				</td>
 			</tr>
 			<tr>
 				<td><label>Email</label></td>
-				<td><p:inputText id="email" placeholder="xyz@gmail.com" value="#{listUsersBean.user.email}" required="true"
-						requiredMessage="l'email est obligatoire"></p:inputText>
+				<td><p:inputText id="email"  label="email" placeholder="xyz@gmail.com" value="#{listUsersBean.user.email}" required="true"
+						requiredMessage="l'email est obligatoire" style="margin-left:30px">
+					</p:inputText>
+					<h:message for="email" />
 				</td>
 			</tr>
 			<tr>
 				<td><label>Login</label></td>
 				<td><p:inputText id="login" placeholder="Nom d'utilisateur" value="#{listUsersBean.user.login}" required="true"
-						requiredMessage="le nom d'utilisateur est obligatoire"></p:inputText>
+						requiredMessage="le nom d'utilisateur est obligatoire" style="margin-left:30px"></p:inputText>
 				</td>
 			</tr>
 			<tr>
 				<td><label>Mot de passe</label></td>
 				<td><p:password id="pwd" placeholder="Mot de passe" value="#{listUsersBean.user.password}" required="true"
-						requiredMessage="le mot de passe est obligatoire"></p:password>
+						requiredMessage="le mot de passe est obligatoire" style="margin-left:30px"></p:password>
 				</td>
 			</tr>
 			<tr>
-				<td><p:commandButton action="#{listUsersBean.addUser()}" value="Valider" oncomplete="PF('dialogAddUser').hide()" update=":users:listUsers" >
+				<td><p:commandButton action="#{listUsersBean.addUser()}" value="Valider" oncomplete="if(!args.validationFailed) PF('dialogAddUser').hide()" update=":users:listUsers,msgs" style="margin-left:60px; margin-top: 20px;">
 				</p:commandButton>
 				</td>
-				<td><p:commandButton onclick="PF('dialogAddUser').hide()" value="Annuler"></p:commandButton></td>
+				<td><p:commandButton onclick="PF('dialogAddUser').hide()" value="Annuler" style="margin-left:60px; margin-top: 20px;"></p:commandButton></td>
 			</tr>
 
 		</table>
 		
 		</h:form>
 		</p:dialog>
+
 </h:body>		
 </html>

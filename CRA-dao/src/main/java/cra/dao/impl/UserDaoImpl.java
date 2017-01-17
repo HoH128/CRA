@@ -63,4 +63,16 @@ public class UserDaoImpl implements UserDao  {
 		}
 	}
 	
+	@Override
+    public void deleteUser(int id) {
+		try {
+		User user = new User();
+		user = em.find(User.class, id);
+		em.remove(user);
+		} catch (Exception e) {
+					
+		}
+		
+	}
+	
 }

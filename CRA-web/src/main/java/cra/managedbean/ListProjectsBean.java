@@ -55,5 +55,9 @@ public class ListProjectsBean {
 		projets = getAllProjets();
 	}
 	
+	public String listUsersRedirect(){
+		return "/List_users.xhtml";
+	}
+	
 }
 

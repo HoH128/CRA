@@ -19,11 +19,13 @@ import cra.services.UserService;
 public class ListUsersBean {
 
 	User user;	
+	int idSelecteduser;
+
 	List<User> users = new ArrayList<>();
-	
+
 	@Autowired
 	UserService userService;	
-	
+
 	public User getUser() {
 		return user;
 	}
@@ -40,24 +42,43 @@ public class ListUsersBean {
 		this.users = users;
 	}
 
+	public int getIdSelecteduser() {
+		return idSelecteduser;
+	}
+
+	public void setIdSelecteduser(int idSelecteduser) {
+		this.idSelecteduser = idSelecteduser;
+	}
+
 	@PostConstruct
 	public void init() {
 		user = new User();
 		users = getAllUsers();
 		user.setNom(AuthentificationBean.user.getNom());
 	}
-	 
+
 	public List<User> getAllUsers(){
 		return userService.findAllUsers();
 	}
-	
+
 	public void addUser(){
 		userService.addUser(user.getLogin(), user.getNom(), user.getPassword(), user.getPrenom(), user.getEmail());
 		users = getAllUsers();
-		
+
 	}
 	public void getUsersName(){
 		user.setNom(AuthentificationBean.user.getNom());
+	}
+
+	public void deleteUser(){
+		if(idSelecteduser != 0){
+			userService.deleteUser(idSelecteduser);
+			users = getAllUsers();
+		}
+	}
+	
+	public String listProjetsRedirect(){
+		return "/List_projets.xhtml";
 	}
 }
 
