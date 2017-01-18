@@ -9,8 +9,9 @@
 	
 </h:head>
 <h:body style="background-color: rgb(220, 224, 227);">
-        <header><img src="assets/images/logo-ASF.png" /></header>
-        <h2 align="center" style="font-family: Forte; src: url('http://www.fontsaddict.com/fontface/forte.ttf'); font-size: 40px; color:#e67300;">Gestion des CRA</h2>
+        <header style="font-family: Forte; src: url('http://www.fontsaddict.com/fontface/forte.ttf'); 
+        font-size: 40px; color:#e67300; padding: 40px 140px 0px;">Comptes Rendus d'Activités</header>
+        <img src="assets/images/report.png" style="margin-left:20px; margin-top:-90px;"/>
 		<p:growl id="msgs"/>
 		<h:form>
 		<p:megaMenu orientation="#{megaMenuView.orientation}" style="margin-top:60px; margin-right:20px; margin-left:20px;">
@@ -72,8 +73,8 @@
 			</p:commandButton>
 			
 			<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
-        	<p:commandButton value="Oui" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
-        	<p:commandButton value="Non" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+        	<p:commandButton value="Oui" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" style="margin-left: 290px;"/>
+        	<p:commandButton value="Non" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close"/>
     		</p:confirmDialog>
     
 		</p:column>
@@ -86,7 +87,7 @@
 		closable="true"
 		modal="true"
 		header="Ajouter projet">
-		<p:messages id="messages" globalOnly="true" />
+		<p:messages id="messages"/>
 		<h:form id='FormAddProjet'>
 		<table>
 			<tr>
@@ -104,7 +105,7 @@
 			<tr>
 				<td><label>Responsable</label></td>
 				<td><p:inputText id="responsableP" placeholder="Nom du responsable" value="#{listProjectsBean.projet.responsable}" required="true"
-						requiredMessage="" style="margin-left:30px"></p:inputText>
+						requiredMessage="Le champ Responsable est obligatoire" style="margin-left:30px"></p:inputText>
 				</td>
 			</tr>
 			<tr>
