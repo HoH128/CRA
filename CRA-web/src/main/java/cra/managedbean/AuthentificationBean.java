@@ -41,6 +41,9 @@ public class AuthentificationBean {
 		else	
 			return "/index.xhtml";
 	}
-	 
+	
+	public String deconnexion(){
+		return "/index.xhtml";
+	}
 }
 

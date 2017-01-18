@@ -18,6 +18,16 @@ import cra.services.ProjetService;
 @Scope("request")
 public class ListProjectsBean {
 
+	int idSelectedproject;
+	
+	public int getIdSelectedproject() {
+		return idSelectedproject;
+	}
+
+	public void setIdSelectedproject(int idSelectedproject) {
+		this.idSelectedproject = idSelectedproject;
+	}
+
 	Projet projet;	
 	List<Projet> projets = new ArrayList<>(); 
 	
@@ -53,6 +63,13 @@ public class ListProjectsBean {
 	public void addProjet(){
 		projetService.addProject(projet.getNomProjet(), projet.getEntite(), projet.getResponsable(), projet.getDescription());
 		projets = getAllProjets();
+	}
+	
+	public void deleteProject(){
+		if(idSelectedproject != 0){
+			projetService.deleteProject(idSelectedproject);
+			projets = getAllProjets();
+		}
 	}
 	
 	public String listUsersRedirect(){

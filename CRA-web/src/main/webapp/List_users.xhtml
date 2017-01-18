@@ -11,9 +11,10 @@
 </h:head>
 <h:body style="background-color: rgb(220, 224, 227);">
 		<header><img src="assets/images/logo-ASF.png" /></header>
+		<h2 align="center" style="font-family: Forte; src: url('http://www.fontsaddict.com/fontface/forte.ttf'); font-size: 40px; color:#e67300;"> Gestion des CRA</h2>
         <p:growl id="msgs"/>
         <h:form>
-		<p:megaMenu orientation="#{megaMenuView.orientation}" style="margin-top:60px; margin-right:20px; margin-left:20px;">
+		<p:megaMenu orientation="#{megaMenuView.orientation}" style="margin-top:50px; margin-right:20px; margin-left:20px;">
     	<p:submenu label="Consultation CRA"></p:submenu>
     	
     	<p:submenu label="Gestion de projets">
@@ -40,14 +41,15 @@
     	
     	<p:submenu label="Admin" style="margin-left:230px;">
     	<p:column>
-    		<p:commandLink >Déconnexion</p:commandLink>
+    		<p:commandLink action="#{authentificationBean.deconnexion()}">Déconnexion</p:commandLink>
     	</p:column>
     	</p:submenu>
     	</p:megaMenu>
     	</h:form>
-    	 
+    	 <p:commandButton icon="ui-icon-plus" value="Nouvel utilisateur" styleclass="ui-priority-primary" style="margin-top:60px; margin-left:840px;"
+		onclick="PF('dialogAddUser').show()"/>
     	<h:form id="users">
-		<p:dataTable id="listUsers" value="#{listUsersBean.users}" var="u"  style="margin-top:80px; width:800px; margin-left:250px;">
+		<p:dataTable id="listUsers" value="#{listUsersBean.users}" var="u"  style="margin-top:40px; width:800px; margin-left:250px;">
 		<p:column headerText="Nom">
 			<h:outputText value="#{u.nom}" />
 		</p:column>
@@ -75,8 +77,6 @@
 		</p:column>
 		</p:dataTable>
 
-		<p:commandButton icon="ui-icon-plus" value="Nouvel utilisateur" styleclass="ui-priority-primary" style="margin-top:60px; margin-left:270px;"
-		onclick="PF('dialogAddUser').show()"/>
 		
 		</h:form>
 		

@@ -27,5 +27,9 @@ public class ProjetServiceImpl  implements ProjetService {
 		projetDao.addProject(nomProjet, entite, responsable, description);
 	}
 	
+	@Override
+	public void deleteProject(int idP) {
+		projetDao.deleteProject(idP);
+	}
 	
 }

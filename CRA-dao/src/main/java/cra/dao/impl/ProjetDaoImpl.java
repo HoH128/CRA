@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 
 import cra.dao.ProjetDao;
 import cra.model.Projet;
+import cra.model.User;
 
 
 @Repository
@@ -47,4 +48,15 @@ public class ProjetDaoImpl implements ProjetDao  {
 		}
 	}
 	
+	@Override
+    public void deleteProject(int idP) {
+		try {
+		Projet projet = new Projet();
+		projet = em.find(Projet.class, idP);
+		em.remove(projet);
+		} catch (Exception e) {
+					
+		}
+		
+	}
 }

@@ -10,6 +10,7 @@
 </h:head>
 <h:body style="background-color: rgb(220, 224, 227);">
         <header><img src="assets/images/logo-ASF.png" /></header>
+        <h2 align="center" style="font-family: Forte; src: url('http://www.fontsaddict.com/fontface/forte.ttf'); font-size: 40px; color:#e67300;">Gestion des CRA</h2>
 		<p:growl id="msgs"/>
 		<h:form>
 		<p:megaMenu orientation="#{megaMenuView.orientation}" style="margin-top:60px; margin-right:20px; margin-left:20px;">
@@ -38,13 +39,15 @@
     	</p:submenu>
     	<p:submenu label="Admin" style="margin-left:230px;">
     	<p:column>
-    		<p:commandLink>Déconnexion</p:commandLink>
+    		<p:commandLink actionListener="#{authentificationBean.deconnexion()}">Déconnexion</p:commandLink>
     	</p:column>
     	</p:submenu>
     	</p:megaMenu>
     	</h:form>
+    	<p:commandButton icon="ui-icon-plus" value="Nouveau projet" styleclass="ui-priority-primary" style="margin-top:60px; margin-left:857px;"
+		onclick="PF('dialogAddProjet').show()"/>
     	<h:form id="projets">
-		<p:dataTable id="listProjets" value="#{listProjectsBean.projets}" var="pr"  style="margin-top:80px; width:800px; margin-left:250px;">
+		<p:dataTable id="listProjets" value="#{listProjectsBean.projets}" var="pr"  style="margin-top:40px; width:800px; margin-left:250px;">
 		<p:column headerText="Nom du projet">
 			<h:outputText value="#{pr.nomProjet}" />
 		</p:column>
@@ -60,10 +63,21 @@
 		<p:column headerText="Description">
 			<h:outputText value="#{pr.description}" />
 		</p:column>
+		
+		<p:column headerText="Action">
+			<p:commandButton id="Update" icon="ui-icon-pencil" value="" style="width : 40px; height: 25px; margin-left:20px; margin-right:20px;"/>
+			<p:commandButton icon="ui-icon-trash" action="#{listProjectsBean.deleteProject()}" value="" update=":projets:listProjets" style="width : 40px; height: 25px;">
+				<p:confirm header="Confirmation" message="Etes-vous sûr de bien vouloir supprimer ce projet?" icon="ui-icon-alert" />
+				<f:setPropertyActionListener value="#{pr.idP}" target="#{listProjectsBean.idSelectedproject}"></f:setPropertyActionListener>
+			</p:commandButton>
+			
+			<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+        	<p:commandButton value="Oui" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+        	<p:commandButton value="Non" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+    		</p:confirmDialog>
+    
+		</p:column>
 		</p:dataTable>
-	
-		<p:commandButton icon="ui-icon-plus" value="Nouveau projet" styleclass="ui-priority-primary" style="margin-top:60px; margin-left:270px;"
-		onclick="PF('dialogAddProjet').show()"/>
 		
 		</h:form>
 		
@@ -95,8 +109,8 @@
 			</tr>
 			<tr>
 				<td><label>Description</label></td>
-				<td><p:inputText id="descP" placeholder="Description" value="#{listProjectsBean.projet.description}" required="true"
-						requiredMessage="Le champ Description est obligatoire" title="Entrez le(s) numéro(s) de semaine(s)" style="margin-left:30px"></p:inputText>
+				<td><p:inputTextarea rows="3" cols="21" id="descP" placeholder="Description" value="#{listProjectsBean.projet.description}" required="true"
+						requiredMessage="Le champ Description est obligatoire" style="margin-left:30px"></p:inputTextarea>
 				</td>
 					<h:panelGroup>
 						<p:tooltip for="descP" styleClass="tooltip" showEvent="focus" hideEvent="blur" />
